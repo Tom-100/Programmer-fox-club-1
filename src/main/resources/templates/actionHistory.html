@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<ul>
+    <li><a th:href="@{/(name=${fox.name})}">Information</a></li>
+    <li><a th:href="@{/nutritionStore(name=${fox.name})}">Nutrition Store</a></li>
+    <li><a th:href="@{/trickCenter(name=${fox.name})}">Trick Center</a></li>
+    <li><a th:href="@{/actionHistory(name=${fox.name})}">Action History</a></li>
+</ul>
+<th:block th:each="action : ${fox.actionHistory}">
+    <li th:text="${action}"></li>
+</th:block>
+<ul>
+</ul>
+
+</body>
+</html>

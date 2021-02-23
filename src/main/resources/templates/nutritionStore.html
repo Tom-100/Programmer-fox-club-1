@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Nutrition store</title>
+</head>
+<body>
+<ul>
+    <li><a th:href="@{/(name=${fox.name})}">Information</a></li>
+    <li><a th:href="@{/nutritionStore(name=${fox.name})}">Nutrition Store</a></li>
+    <li><a th:href="@{/trickCenter(name=${fox.name})}">Trick Center</a></li>
+    <li><a th:href="@{/actionHistory(name=${fox.name})}">Action History</a></li>
+</ul>
+
+<form action="#" method="post" th:action="@{/nutritionStore}">
+    <input type="hidden" id="name" name="name" th:value="${fox.name}">
+
+    <label for="food">Food</label>
+    <select name="food" id="food">
+        <option th:each="food : ${foods}" th:value="${food}" th:text="${food}"></option>
+    </select>
+
+    <label for="drink">Drink</label>
+    <select name="drink" id="drink">
+        <option th:each="drink : ${drinks}" th:value="${drink}" th:text="${drink}"></option>
+    </select>
+
+
+    <input type="submit" value="Change">
+</form>
+
+
+</body>
+</html>

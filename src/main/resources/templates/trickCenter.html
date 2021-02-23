@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Trick Center</title>
+</head>
+<body>
+<ul>
+    <li><a th:href="@{/(name=${fox.name})}">Information</a></li>
+    <li><a th:href="@{/nutritionStore(name=${fox.name})}">Nutrition Store</a></li>
+    <li><a th:href="@{/trickCenter(name=${fox.name})}">Trick Center</a></li>
+    <li><a th:href="@{/actionHistory(name=${fox.name})}">Action History</a></li>
+</ul>
+
+<form th:if="${availableTricks > 0}" method="get" th:action="@{/trickCenter}">
+    <input type="hidden" id="name" name="name" th:value="${fox.name}">
+    <label for="trick">Tricks</label>
+    <select name="trick" id="trick">
+        <option th:each="trick : ${tricksToLearn}" th:value="${trick}" th:text="${trick}"></option>
+    </select>
+    <input type="submit" value="Learn">
+</form>
+<p th:if="${availableTricks == 0}">You have already learned all the tricks.</p>
+</body>
+</html>

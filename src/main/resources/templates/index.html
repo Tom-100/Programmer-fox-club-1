@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Information page</title>
+</head>
+<body>
+<ul>
+    <li><a th:href="@{/(name=${fox.name})}">Information</a></li>
+    <li><a th:href="@{/nutritionStore(name=${fox.name})}">Nutrition Store</a></li>
+    <li><a th:href="@{/trickCenter(name=${fox.name})}">Trick Center</a></li>
+    <li><a th:href="@{/actionHistory(name=${fox.name})}">Action History</a></li>
+</ul>
+<img th:src="@{greenfox.png}">
+<p th:text="${'This is ' + fox.name + '. Currently living on '  + fox.food + ' and ' + fox.drink + '. He knows ' + fox.numberOfTricks + ' tricks.'}">This is Mr. Fox. Currently living on pizza and lemonade. He knows 2 tricks.</p>
+
+<h2 th:if="${fox.numberOfTricks > 0}">Known tricks</h2>
+<ul th:if="${fox.numberOfTricks > 0}">
+    <th:block th:each="trick : ${fox.listOfTricks}">
+        <li th:text="${trick}"></li>
+    </th:block>
+</ul>
+
+<h2 th:if="${not #lists.isEmpty(fox.actionHistory)}">Action History</h2>
+<ul th:if="${not #lists.isEmpty(fox.actionHistory)}" th:each="i : ${#numbers.sequence(1, T(Math).min(fox.numberOfActions, 5))}">
+        <li th:text="${fox.actionHistory[fox.numberOfActions-i]}"></li>
+</ul>
+</body>
+</html>
